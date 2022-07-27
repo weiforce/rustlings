@@ -16,6 +16,12 @@ trait AppendBar {
     fn append_bar(self) -> Self;
 }
 
+impl AppendBar for Vec<T> {
+    fn append_bar<String>(self) -> String {
+        "bar".to_string()
+    }
+}
+
 //TODO: Add your code here
 
 #[cfg(test)]
