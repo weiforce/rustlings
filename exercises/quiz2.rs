@@ -35,8 +35,6 @@ fn main() {
     string_slice("  hello there ".trim());
     string("Happy Monday!".to_string().replace("Mon", "Tues"));
     string("mY sHiFt KeY iS sTiCkY".to_lowercase());
-// I AM NOT DONE
-
 }
 
 pub enum Command {
@@ -55,15 +53,15 @@ mod my_module {
         for (string, command) in input.iter() {
             // TODO: Complete the function body. You can do it!
             match command {
-                Command::Uppercase => output.push(string.to_lowercase()),
+                Command::Uppercase => output.push(string.to_uppercase()),
                 Command::Trim => output.push(string.to_string().trim().to_string()),
                 Command::Append(j) => { 
-                    let a = String::from("");
-                    let i:usize;
+                    let mut a = format!("{}", string);
 
-                    for i in 0..1 {
-                        format!("{}bar",a);
+                    for _ in 0..*j {
+                        a = format!("{}bar",a);
                     }
+                    println!("here {}", a);
                     output.push(a);
                 }
 
@@ -87,7 +85,7 @@ mod tests {
             ("foo".into(), Command::Append(1)),
             ("bar".into(), Command::Append(5)),
         ]);
-        assert_eq!(output[0], "hello");
+        assert_eq!(output[0], "HELLO");
         assert_eq!(output[1], "all roads lead to rome!");
         assert_eq!(output[2], "foobar");
         assert_eq!(output[3], "barbarbarbarbarbar");

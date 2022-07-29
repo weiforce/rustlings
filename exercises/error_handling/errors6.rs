@@ -18,9 +18,9 @@ enum ParsePosNonzeroError {
 }
 
 impl ParsePosNonzeroError {
-    fn from_creation(err: CreationError) -> ParsePosNonzeroError {
-        ParsePosNonzeroError::Creation(err)
-    }
+    // fn from_creation(err: CreationError) -> ParsePosNonzeroError {
+    //     ParsePosNonzeroError::Creation(err)
+    // }
     // TODO: add another error conversion function here.
     fn from_creation(e: CreationError) -> ParsePosNonzeroError {
         ParsePosNonzeroError::Creation(e)
