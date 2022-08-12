@@ -9,6 +9,8 @@ struct Person {
     age: usize,
 }
 
+
+
 // We implement the Default trait to use it as a fallback
 // when the provided string is not convertible into a Person object
 impl Default for Person {
@@ -35,10 +37,31 @@ impl Default for Person {
 // If while parsing the age, something goes wrong, then return the default of Person
 // Otherwise, then return an instantiated Person object with the results
 
-// I AM NOT DONE
-
 impl From<&str> for Person {
     fn from(s: &str) -> Person {
+        let a:Vec<&str> = s.split(',').collect();
+        let name = a[0];
+
+        if a.len() != 2 || name == "" {
+            return Person::default();
+        }
+
+        let mut age = 0;
+
+        // if let Some(data) = a[1].parse::<usize>() {
+        //     age = data;
+        // }
+
+        match a[1].parse::<usize>() {
+            Ok(data) => age = data,
+            _ => {}
+        }
+
+        if age == 0 {
+            return Person::default();
+        }
+
+        Person { name:name.to_string(), age }
     }
 }
 
@@ -79,6 +102,7 @@ mod tests {
     fn test_bad_age() {
         // Test that "Mark,twenty" will return the default person due to an error in parsing age
         let p = Person::from("Mark,twenty");
+
         assert_eq!(p.name, "John");
         assert_eq!(p.age, 30);
     }
